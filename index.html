@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Explore the history and estimated age of buildings using photos and historical evidence.">
+  <title>TimeTrace — Building Age Explorer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="logo" href="#">Time<span>Trace</span></a>
+    <span class="tag">Building Age Explorer</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">DISCOVER THE PAST</p>
+      <h1>How long has this <span>building</span> been here?</h1>
+      <p>
+        Photograph a building, add its location, and investigate
+        its history using dated evidence.
+      </p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>01. Capture a building</h2>
+        <p class="muted">Take a photo or choose one from your device.</p>
+
+        <label for="photo">Building photo</label>
+        <input id="photo" type="file" accept="image/*" capture="environment">
+        <img id="preview" alt="Building preview" hidden>
+
+        <label for="place">Building name or address</label>
+        <input id="place" type="text" placeholder="e.g. Old school, Feni">
+
+        <h3>Location</h3>
+        <div class="actions">
+          <button id="getLocation" type="button">Use my GPS</button>
+          <button id="toggleManual" type="button" class="secondary">
+            Enter manually
+          </button>
+        </div>
+
+        <div id="manualLocation" hidden>
+          <label for="latitude">Latitude</label>
+          <input id="latitude" type="number" step="any" placeholder="23.01">
+
+          <label for="longitude">Longitude</label>
+          <input id="longitude" type="number" step="any" placeholder="91.40">
+
+          <button id="saveLocation" type="button">Save coordinates</button>
+        </div>
+
+        <p id="locationStatus" class="status">Location not added.</p>
+      </article>
+
+      <article class="card">
+        <h2>02. Add historical evidence</h2>
+        <p class="muted">
+          Enter dates from reliable records or historical images.
+        </p>
+
+        <label for="builtYear">Documented construction year</label>
+        <input id="builtYear" type="number" min="1800" placeholder="e.g. 1998">
+
+        <label for="absentYear">Last year known to be absent</label>
+        <input id="absentYear" type="number" min="1800" placeholder="e.g. 1995">
+
+        <label for="seenYear">First year known to be present</label>
+        <input id="seenYear" type="number" min="1800" placeholder="e.g. 2000">
+
+        <label for="source">Evidence source and notes</label>
+        <textarea id="source" rows="4"
+          placeholder="Dated photo, historical map, public record, source URL..."></textarea>
+
+        <div class="actions">
+          <button id="analyze" type="button" class="primary">
+            Generate report
+          </button>
+          <button id="reset" type="button" class="secondary">Reset</button>
+        </div>
+
+        <p id="message" class="status">Ready to investigate.</p>
+      </article>
+    </section>
+
+    <section class="card report">
+      <p class="eyebrow">YOUR RESULTS</p>
+      <h2>Building history report</h2>
+      <p id="reportPlace" class="muted">No building selected.</p>
+
+      <div class="stats">
+        <div class="stat">
+          <span>Estimated age</span>
+          <strong id="ageResult">Unknown</strong>
+        </div>
+        <div class="stat">
+          <span>Construction duration</span>
+          <strong id="durationResult">Unknown</strong>
+        </div>
+        <div class="stat">
+          <span>Location</span>
+          <strong id="coordinateResult">Unknown</strong>
+        </div>
+        <div class="stat">
+          <span>Historical evidence</span>
+          <strong id="evidenceResult">None entered</strong>
+        </div>
+      </div>
+
+      <h3>Historical timeline</h3>
+      <div id="timeline" class="timeline">
+        Add historical evidence to start your timeline.
+      </div>
+
+      <div class="notice">
+        This prototype does not automatically verify dates or analyze
+        historical satellite imagery. Results are based on information
+        you provide. A photo alone cannot establish a building's exact age.
+      </div>
+
+      <div class="actions">
+        <button id="download" type="button">Download JSON report</button>
+        <button id="copy" type="button" class="secondary">Copy summary</button>
+      </div>
+    </section>
+
+    <footer>
+      TimeTrace · An experimental building-history project
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
